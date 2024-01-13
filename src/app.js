@@ -1,4 +1,4 @@
-import { express } from "express";
+import  express from "express";
 import cors from "cors"
 import cookieParser from "cookie-parser";
 
@@ -22,4 +22,7 @@ import userRouter from "./routes/user.routes.js";
 
 app.use("/api/v1/users",userRouter)
 
-http://localhost:5500/users
+// http://localhost:8000/users
+
+
+export {app}
