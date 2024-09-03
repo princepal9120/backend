@@ -1,5 +1,5 @@
 import {v2 as cloudinary } from "cloudinary"
-import { response } from "express";
+// import { response } from "express";
 import fs from "fs"
 
           
@@ -12,18 +12,18 @@ const uploadOnCloudinary= async (localFilePath) => {
     try{
         if(!localFilePath) return null;
         // upload the file on cloudinary
-        cloudinary.uploader.upload(localFilePath,{
+        const response= await cloudinary.uploader.upload(localFilePath,{
             resource_type: "auto"
         })
-        console.log("file is uploaded successfully", response.url);
+        // console.log("file is uploaded successfully", response);
+        fs.unlinkSync(localFilePath)
 return response;
     }catch(error){
 fs.unlinkSync(localFilePath)
+ return null;
 // remove the localy saved temporary file as the upload operation got failed
     }
 }
-cloudinary.uploader.upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg",
-  { public_id: "olympic_flag" }, 
-  function(error, result) {console.log(result); });
+
 
   export { uploadOnCloudinary }
